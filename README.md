@@ -16,7 +16,6 @@ yarn start // Khởi động project
 - Thư mục `redux` sẽ chia ra nhiều "miếng" (slices). Mỗi miếng sẽ gồm: 
   - `actions.js`
   - `reducer.js`
-  - `types.js`
   - `selectors.js`,
   - và có thể `data.js`,... 
   - Khi truy xuất dữ liệu từ redux sẽ dùng `useSelector` + một selector từ `selectors.js`. 

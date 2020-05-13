@@ -1,4 +1,10 @@
-import types from './types';
+export const types = {
+  ADD_PRODUCT: 'ADD_PRODUCT',
+  REMOVE_PRODUCT: 'REMOVE_PRODUCT',
+  TAKEOUT_1_PRODUCT: 'TAKEOUT_1_PRODUCT',
+  EMPTY_CART: 'EMPTY_CART',
+  SUBMIT_GUEST: 'SUBMIT_GUEST',
+};
 
 export const addProduct = (payload) => ({
   type: types.ADD_PRODUCT,

@@ -1,4 +1,4 @@
-import types from './types';
+import { types } from './actions';
 import { addProductToCart, removeProductFromCart, Takeout1ProductFromCart } from './utils';
 
 const initialState = {

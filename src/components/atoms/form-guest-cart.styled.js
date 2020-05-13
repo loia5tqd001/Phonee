@@ -67,3 +67,42 @@ export const TextInput = styled.input`
     border-color: ${(props) => props.theme.colors.blue4};
   }
 `;
+
+export const PayButton = styled.button`
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  max-width: 50rem;
+  text-align: center;
+  color: ${(props) => props.theme.colors.white};
+  text-transform: uppercase;
+  padding: 1em;
+  margin: 1em auto;
+  border-radius: 0.4rem;
+  border: none;
+  font-weight: ${(props) => props.theme.fw.normal};
+  background: ${(props) => `
+    linear-gradient(to bottom, 
+      ${props.theme.colors.orange1}, 
+      ${props.theme.colors.orange2})`};
+`;
+
+export const MarginAuto = styled.p`
+  margin: auto;
+  text-align: center;
+`;
+
+// react-select with required property: https://codesandbox.io/s/react-select-v2-required-input-3xvvb?fontsize=14&file=/src/FixRequiredSelect.js
+export const CustomSelectContainer = styled.div`
+  position: relative;
+
+  input {
+    cursor: default;
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    opacity: 0;
+  }
+`;

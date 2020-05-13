@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import Select from 'react-select';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectGuest } from '../../redux/cart/selectors';
 import { submitGuest } from '../../redux/cart/actions';
+import routes from '../../utils/routes';
 
 import { getProvinces, getDistricts, getWards } from './form-guest-cart.utils';
 import {
@@ -13,9 +15,31 @@ import {
   MarginTop,
   RadioButton,
   TextInput,
+  PayButton,
+  MarginAuto,
+  CustomSelectContainer,
 } from './form-guest-cart.styled';
 
+// // react-select with required property: https://github.com/JedWatson/react-select/issues/3140#issuecomment-514754657
+const CustomSelect = (props) => {
+  return (
+    <CustomSelectContainer>
+      <Select {...props} />
+      {!props.disabled && (
+        <input
+          tabIndex={-1}
+          autoComplete="off"
+          value={props.value || ''}
+          onChange={() => {}}
+          required={props.required}
+        />
+      )}
+    </CustomSelectContainer>
+  );
+};
+
 function FormGuestCart() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const cachedGuest = useSelector(selectGuest);
 
@@ -29,8 +53,10 @@ function FormGuestCart() {
   const [street, setStreet] = useState(cachedGuest.street);
   const [requirement, setRequirement] = useState(cachedGuest.requirement);
 
-  useEffect(() => {
-    return () =>
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      history.push(routes.checkout.path);
       dispatch(
         submitGuest({
           gender,
@@ -43,21 +69,37 @@ function FormGuestCart() {
           requirement,
         }),
       );
-  }, [dispatch, gender, name, phone, province, district, ward, street, requirement]);
+    },
+    [dispatch, history, gender, name, phone, province, district, ward, street, requirement],
+  );
 
   return (
     <Container>
       <Heading>Thông tin giao hàng:</Heading>
-      <form onSubmit={() => console.log('submit')}>
+      <form onSubmit={onSubmit}>
         <div onChange={(e) => setGender(e.target.value)}>
           <RadioButton htmlFor="male">
-            <input type="radio" name="gender" id="male" value="anh" required />
+            <input
+              type="radio"
+              name="gender"
+              id="male"
+              value="anh"
+              defaultChecked={gender === 'anh'}
+              required
+            />
             <ion-icon name="radio-button-on" />
             <ion-icon name="radio-button-off" />
             Anh
           </RadioButton>
           <RadioButton htmlFor="female">
-            <input type="radio" name="gender" id="female" value="chị" required />
+            <input
+              type="radio"
+              name="gender"
+              id="female"
+              value="chị"
+              defaultChecked={gender === 'chị'}
+              required
+            />
             <ion-icon name="radio-button-on" />
             <ion-icon name="radio-button-off" />
             Chị
@@ -73,17 +115,20 @@ function FormGuestCart() {
             name="name"
           />
           <TextInput
-            type="text"
+            type="tel"
             placeholder="Số điện thoại"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
+            pattern="0[0-9]{9}"
+            minLength={10}
+            maxLength={10}
             name="phone"
           />
         </Row>
         <MarginTop>Địa chỉ giao hàng:</MarginTop>
         <Row>
-          <Select
+          <CustomSelect
             options={getProvinces()}
             value={province}
             placeholder="Chọn tỉnh thành"
@@ -94,7 +139,7 @@ function FormGuestCart() {
             }}
             required
           />
-          <Select
+          <CustomSelect
             options={getDistricts(province?.value)}
             value={district}
             placeholder="Chọn quận, huyện"
@@ -107,7 +152,7 @@ function FormGuestCart() {
           />
         </Row>
         <Row>
-          <Select
+          <CustomSelect
             options={getWards(district?.value)}
             value={ward}
             placeholder="Chọn phường, xã"
@@ -134,6 +179,8 @@ function FormGuestCart() {
             name="requirement"
           />
         </Row>
+        <PayButton>Đặt hàng</PayButton>
+        <MarginAuto>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</MarginAuto>
       </form>
     </Container>
   );

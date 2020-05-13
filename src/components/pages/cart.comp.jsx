@@ -13,8 +13,7 @@ import {
   CartContainer,
   CartProducts,
   Total,
-  PayButton,
-  MarginAuto,
+
   EmptyCartContainer,
   ToHomeLink,
 } from './cart.styled';
@@ -47,8 +46,7 @@ function Cart() {
 
           <FormGuestCart />
 
-          <PayButton to={routes.checkout.path}>Đặt hàng</PayButton>
-          <MarginAuto>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</MarginAuto>
+
         </CartContainer>
       ) : (
         <EmptyCartContainer>

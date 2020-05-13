@@ -50,27 +50,6 @@ export const CartProducts = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.colors.greyLight3};
 `;
 
-export const PayButton = styled(Link)`
-  display: block;
-  max-width: 50rem;
-  text-align: center;
-  color: ${(props) => props.theme.colors.white};
-  text-transform: uppercase;
-  padding: 1em;
-  margin: 1em auto;
-  border-radius: 0.4rem;
-  font-weight: ${(props) => props.theme.fw.normal};
-  background: ${(props) => `
-    linear-gradient(to bottom, 
-      ${props.theme.colors.orange1}, 
-      ${props.theme.colors.orange2})`};
-`;
-
-export const MarginAuto = styled.p`
-  margin: auto;
-  text-align: center;
-`;
-
 export const EmptyCartContainer = styled(CartContainer)`
   display: flex;
   flex-direction: column;

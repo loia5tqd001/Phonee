@@ -4,7 +4,7 @@ import { addProductToCart, removeProductFromCart, Takeout1ProductFromCart } from
 const initialState = {
   items: [],
   guest: {
-    gender: null,
+    gender: 'anh',
     name: '',
     phone: '',
     province: null,

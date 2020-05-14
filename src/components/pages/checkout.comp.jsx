@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectGuest, selectTotalMoney, selectItems } from '../../redux/cart/selectors';
@@ -7,6 +7,7 @@ import { formatVnd } from '../../utils/helpers';
 import routes from '../../utils/routes';
 
 import CartItem from '../atoms/cart-item.comp';
+import Modal from '../atoms/modal.comp';
 import {
   PageContainer,
   InfoHeading,
@@ -26,14 +27,54 @@ function Checkout() {
   const cartItems = useSelector(selectItems);
   const totalMoney = useSelector(selectTotalMoney);
 
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+
   if (!cartItems.length) {
     history.push(routes.home.path);
   }
 
+  const goBackHomePage = () => {
+    setIsConfirmOpen(false);
+    setIsAlertOpen(false);
+    dispatch(emptyCart());
+    history.push(routes.home.path);
+  };
+
   return (
     <PageContainer>
+      {isConfirmOpen && (
+        <Modal
+          isOpen={isConfirmOpen}
+          heading="hủy đơn hàng"
+          buttons={[
+            { type: 'outline', content: 'Đóng', callback: () => setIsConfirmOpen(false) },
+            {
+              type: 'contained',
+              content: 'Xác nhận hủy',
+              callback: () => {
+                setIsConfirmOpen(false);
+                setIsAlertOpen(true);
+              },
+            },
+          ]}
+        >
+          Bạn có chắc muốn hủy đơn hàng này?
+        </Modal>
+      )}
+      {isAlertOpen && (
+        <Modal
+          isOpen={isAlertOpen}
+          heading="hủy đơn hàng thành công"
+          buttons={[{ type: 'outline', content: 'Đóng', callback: goBackHomePage }]}
+          autoClose={{ time: 5, callback: goBackHomePage }}
+        >
+          Đơn hàng đã được hủy thành công
+        </Modal>
+      )}
+
       <SuccessCheckout>
-        <ion-icon name="checkmark"></ion-icon> Đặt hàng thành công
+        <ion-icon name="checkmark" /> Đặt hàng thành công
       </SuccessCheckout>
 
       <p>
@@ -69,16 +110,7 @@ function Checkout() {
         </li>
       </InfoList>
 
-      <NormalLink
-        onClick={() => {
-          if (window.confirm('Bạn có chắc muốn hủy đơn hàng')) {
-            dispatch(emptyCart());
-            history.push(routes.home.path);
-          }
-        }}
-      >
-        Hủy đơn hàng
-      </NormalLink>
+      <NormalLink onClick={() => setIsConfirmOpen(true)}>Hủy đơn hàng</NormalLink>
       <p>
         Khi cần hỗ trợ vui lòng gọi{' '}
         <b>

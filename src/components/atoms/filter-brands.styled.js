@@ -3,6 +3,14 @@ import styled, { css } from 'styled-components';
 export const Container = styled.div`
   ${(props) => props.theme.mixins.gridDivideIntoColumns(8)}
   user-select: none;
+
+  ${(props) => props.theme.media.lessThan('regular')`
+    --no-columns: 6;
+  `}
+
+  ${(props) => props.theme.media.lessThan('small')`
+    --no-columns: 4;
+  `}
 `;
 
 export const ImageContainer = styled.div`
@@ -14,6 +22,13 @@ export const ImageContainer = styled.div`
   margin: -1px -1px 0 0;
   min-height: 4rem;
 
+  ${(props) => props.theme.media.lessThan('medium')`
+    padding: 5% 10%;
+  `}
+  ${(props) => props.theme.media.lessThan('smedium')`
+    padding: 0.5em 0 0;
+  `}
+
   img {
     /* prevent dragging ghost image: https://stackoverflow.com/a/48828721/9787887 */
     pointer-events: none;
@@ -22,7 +37,6 @@ export const ImageContainer = styled.div`
   ${(props) =>
     props.isChecked &&
     css`
-    
       border-color: ${props.theme.colors.blue};
       z-index: 1;
 

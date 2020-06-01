@@ -1,27 +1,27 @@
 export const priceFilters = [
   {
     label: 'Tất cả',
-    callback: () => true,
+    value: () => true,
   },
   {
     label: 'Dưới 2 triệu',
-    callback: ({ price }) => price > 0 && price < 2000000,
+    value: ({ price }) => price > 0 && price < 2000000,
   },
   {
     label: 'Từ 2 - 4 triệu',
-    callback: ({ price }) => price >= 2000000 && price <= 4000000,
+    value: ({ price }) => price >= 2000000 && price <= 4000000,
   },
   {
     label: 'Từ 4 - 7 triệu',
-    callback: ({ price }) => price >= 4000000 && price <= 7000000,
+    value: ({ price }) => price >= 4000000 && price <= 7000000,
   },
   {
     label: 'Từ 7 - 13 triệu',
-    callback: ({ price }) => price >= 7000000 && price <= 13000000,
+    value: ({ price }) => price >= 7000000 && price <= 13000000,
   },
   {
     label: 'Trên 13 triệu',
-    callback: ({ price }) => price > 13000000,
+    value: ({ price }) => price > 13000000,
   },
 ];
 

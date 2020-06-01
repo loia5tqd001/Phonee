@@ -16,6 +16,7 @@ export const Container = styled.button`
   outline: none;
   opacity: 0.95;
   transition: transform 0.3s, opacity 0.5s;
+  z-index: 20;
 
   &:hover {
     transform: translateY(-0.5rem);

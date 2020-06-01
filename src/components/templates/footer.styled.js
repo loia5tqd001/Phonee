@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-export const FooterContainer = styled.footer``;
+export const FooterContainer = styled.footer`
+  /* 
+    - TODO: Make the footer sticky: https://css-tricks.com/couple-takes-sticky-footer/
+    - Ideas: May need a wrapper .container with {max-width: 1200px} for pages, and use flex trick in the post 
+  */
+`;
 
 export const Container = styled.div`
   color: ${(props) => props.theme.colors.white};

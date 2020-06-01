@@ -47,6 +47,10 @@ export const Row = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 1em;
   margin: 1rem auto 1em;
+
+  ${(props) => props.theme.media.lessThan('small')`
+    grid-template-columns: 1fr;
+  `}
 `;
 
 export const NoOptionMessage = styled.p`

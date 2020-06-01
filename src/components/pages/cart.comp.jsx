@@ -13,7 +13,6 @@ import {
   CartContainer,
   CartProducts,
   Total,
-
   EmptyCartContainer,
   ToHomeLink,
 } from './cart.styled';
@@ -45,8 +44,6 @@ function Cart() {
           </CartProducts>
 
           <FormGuestCart />
-
-
         </CartContainer>
       ) : (
         <EmptyCartContainer>

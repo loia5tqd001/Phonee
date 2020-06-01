@@ -14,7 +14,7 @@ export const useFilterProducts = (products) => {
 
   const filteredProducts = products
     .filter((prod) => (productIdsIncluded.length > 0 ? productIdsIncluded.includes(prod.id) : true)) // filter by brands
-    .filter(priceFilter.callback); // filter by price
+    .filter(priceFilter.value); // filter by price
 
   return filteredProducts;
 };

@@ -4,11 +4,10 @@ import { removeAllFilters, resetSorting } from '../../redux/product-filter-sorti
 
 import GridProducts from '../atoms/grid-products.comp';
 import FilterBrands from '../atoms/filter-brands.comp';
-import FilterPrice from '../atoms/filter-price.comp';
+import FilterPriceAndSorting from '../atoms/filter-price-and-sorting.comp';
 import FilterChips from '../atoms/filter-chips.comp';
-import SortSelector from '../atoms/sort-selector.comp';
 
-import { PageContainer, Flex } from './product.styled';
+import { PageContainer } from './product.styled';
 
 function Product() {
   const dispatch = useDispatch();
@@ -21,10 +20,7 @@ function Product() {
   return (
     <PageContainer>
       <FilterBrands />
-      <Flex>
-        <FilterPrice />
-        <SortSelector />
-      </Flex>
+      <FilterPriceAndSorting />
       <FilterChips />
       <GridProducts />
     </PageContainer>

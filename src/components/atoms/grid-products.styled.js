@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 
 export const GridContainer = styled.div`
   ${(props) => props.theme.mixins.gridDivideIntoColumns(5)}
+
+  ${(props) => props.theme.media.lessThan('regular')`
+    --no-columns: 4;
+  `}
+
+  ${(props) => props.theme.media.lessThan('smedium')`
+    --no-columns: 2;
+  `}
 `;
 
 export const Alert = styled.span`

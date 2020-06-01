@@ -1,3 +1,37 @@
+import styled from 'styled-components';
+
+export const Container = styled.div`
+  margin: 1em 0.5em;
+  display: flex;
+
+  ${(props) => props.theme.media.lessThan('small')`
+    flex-direction: column;
+  `}
+`;
+
+export const Group = styled.div`
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-right: 1em;
+  }
+
+  &:first-child {
+    z-index: 11;
+  }
+
+  ${(props) => props.theme.media.lessThan('small')`
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  `}
+`;
+
+export const Label = styled.label`
+  margin-right: 1em;
+`;
+
 export const selectCustomStyles = {
   control: (base) => ({
     ...base,
@@ -18,8 +52,11 @@ export const selectCustomStyles = {
 
   container: (base) => ({
     ...base,
-    width: '11em',
+    width: '10em',
     zIndex: '10',
+    '&:selected': {
+      zIndex: '11',
+    },
   }),
 
   option: (base) => ({

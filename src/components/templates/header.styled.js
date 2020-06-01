@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom';
 
 export const HeaderContainer = styled.header`
   max-width: 120rem;
-  margin: 0 auto 2em;
+  margin: 0 auto 1em;
   padding: 0.2em 3em;
   background: ${(props) => props.theme.colors.blueDarker2};
   color: ${(props) => props.theme.colors.white};
   display: flex;
   align-items: center;
+
+  ${(props) => props.theme.media.lessThan('smedium')`
+    padding: 0.2em 3%;
+  `}
 `;
 
 export const Logo = styled(Link)`
@@ -18,12 +22,18 @@ export const Logo = styled(Link)`
   color: ${(props) => props.theme.colors.white};
   font-weight: ${(props) => props.theme.fw.bold};
   text-shadow: 0 1px 2px #0003;
+
+  ${(props) => props.theme.media.lessThan('smedium')`
+    margin-right: 0.5em;
+    font-size: 2em;
+  `}
 `;
 
 export const Form = styled.form`
   display: flex;
   align-items: center;
   position: relative;
+  max-width: 50%;
 `;
 
 export const SearchInput = styled.input`
@@ -31,6 +41,7 @@ export const SearchInput = styled.input`
   outline: none;
   border-radius: 4px;
   border: none;
+  max-width: 100%;
 `;
 
 export const SearchButton = styled.button`
@@ -41,8 +52,8 @@ export const SearchButton = styled.button`
   color: ${(props) => props.theme.colors.greyLight3};
   position: absolute;
   top: 50%;
-  right: 0.5rem;
   transform: translateY(-50%);
+  right: 0.5rem;
   outline: none;
 `;
 

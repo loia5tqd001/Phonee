@@ -3,6 +3,7 @@ import { addProductToCart, removeProductFromCart, Takeout1ProductFromCart } from
 
 const initialState = {
   items: [],
+  isInCart: true,
   guest: {
     gender: 'anh',
     name: '',
@@ -42,6 +43,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         items: [],
+        isInCart: true,
       };
     }
 
@@ -49,6 +51,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         guest: payload,
+        isInCart: false,
       };
     }
 

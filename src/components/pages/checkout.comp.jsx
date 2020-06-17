@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectGuest, selectTotalMoney, selectItems } from '../../redux/cart/selectors';
@@ -40,6 +40,12 @@ function Checkout() {
     dispatch(emptyCart());
     history.push(routes.home.path);
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(emptyCart());
+    };
+  }, [dispatch]);
 
   return (
     <PageContainer>

@@ -1,16 +1,16 @@
 import React, { useState, useCallback } from 'react';
 import routes from '../../utils/routes';
 import { useSelector } from 'react-redux';
-import { selectAmountProduct } from '../../redux/cart/selectors';
+import { selectAmountProductInCart } from '../../redux/cart/selectors';
 
 import SearchSuggestion from '../atoms/search-suggestion.comp';
 import { HeaderContainer, Logo, Form, SearchInput, SearchButton, CartIcon } from './header.styled';
 
 function Header() {
-  const amountProducts = useSelector(selectAmountProduct);
+  const amountProducts = useSelector(selectAmountProductInCart);
   const [searchKey, setSearchKey] = useState('');
   const clearTextCb = useCallback(() => setSearchKey(''), []);
-  const preventCb = useCallback((e) => e.preventDefault());
+  const preventCb = useCallback((e) => e.preventDefault(), []);
 
   return (
     <HeaderContainer>

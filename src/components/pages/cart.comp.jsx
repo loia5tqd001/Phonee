@@ -2,7 +2,7 @@ import React from 'react';
 import routes from '../../utils/routes';
 import { formatVnd } from '../../utils/helpers';
 import { useSelector } from 'react-redux';
-import { selectItems, selectTotalMoney } from '../../redux/cart/selectors';
+import { selectItemsInCart, selectTotalMoneyInCart } from '../../redux/cart/selectors';
 
 import CartItem from '../atoms/cart-item.comp';
 import FormGuestCart from '../atoms/form-guest-cart.comp';
@@ -18,8 +18,8 @@ import {
 } from './cart.styled';
 
 function Cart() {
-  const cartItems = useSelector(selectItems);
-  const totalMoney = useSelector(selectTotalMoney);
+  const cartItems = useSelector(selectItemsInCart);
+  const totalMoney = useSelector(selectTotalMoneyInCart);
 
   return (
     <PageContainer>

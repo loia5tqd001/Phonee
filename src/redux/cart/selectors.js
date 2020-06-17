@@ -7,8 +7,13 @@ export const selectItems = createSelector(
   (cart) => cart.items,
 );
 
-export const selectAmountProduct = createSelector(
-  [selectItems], 
+export const selectItemsInCart = createSelector(
+  [selectCart],
+  (cart) => cart.isInCart ? cart.items : [],
+)
+
+export const selectAmountProductInCart = createSelector(
+  [selectItemsInCart], 
   (items) => 
     items.reduce(
       (acc, cur) => acc + cur.amount,
@@ -17,6 +22,14 @@ export const selectAmountProduct = createSelector(
 
 export const selectTotalMoney = createSelector(
   [selectItems], 
+  (items) =>
+    items.reduce(
+      (acc, cur) => acc + cur.amount * cur.product.price, 
+    0),
+);
+
+export const selectTotalMoneyInCart = createSelector(
+  [selectItemsInCart], 
   (items) =>
     items.reduce(
       (acc, cur) => acc + cur.amount * cur.product.price, 

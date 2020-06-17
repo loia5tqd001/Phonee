@@ -10,12 +10,15 @@ function Header() {
   const amountProducts = useSelector(selectAmountProduct);
   const [searchKey, setSearchKey] = useState('');
   const clearTextCb = useCallback(() => setSearchKey(''), []);
+  const preventCb = useCallback((e) => e.preventDefault());
 
   return (
     <HeaderContainer>
-      <Logo to={routes.home.path} title="Trang chủ">Phonee</Logo>
+      <Logo to={routes.home.path} title="Trang chủ">
+        Phonee
+      </Logo>
 
-      <Form>
+      <Form onSubmit={preventCb}>
         <SearchInput
           type="text"
           placeholder="Bạn tìm gì..."

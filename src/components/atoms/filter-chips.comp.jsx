@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { priceFilters } from '../../redux/product-filter-sorting/data';
@@ -11,11 +12,11 @@ import {
   setPriceFilter,
   removeAllFilters,
 } from '../../redux/product-filter-sorting/actions';
-import brands from '../../mock-data/brands';
-
+import { brandProps } from '../../utils/prop-types';
+import WithSpinner from './with-spinner.comp';
 import { Chip } from './filter-chips.styled';
 
-function FilterChips() {
+function FilterChips({ brands }) {
   const brandsToFilter = useSelector(selectBrandsFiltered);
   const priceFilter = useSelector(selectPriceFilter);
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function FilterChips() {
 
   return (
     <div>
-      {brands.map(
+      {Object.values(brands).map(
         (brand) =>
           brandsToFilter.includes(brand) && (
             <Chip key={brand.id} onClick={() => dispatch(toggleBrand(brand))}>
@@ -47,4 +48,8 @@ function FilterChips() {
   );
 }
 
-export default FilterChips;
+FilterChips.propTypes = {
+  brands: PropTypes.objectOf(PropTypes.shape(brandProps)).isRequired,
+};
+
+export default WithSpinner(FilterChips);

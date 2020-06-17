@@ -1,11 +1,14 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import products from '../../mock-data/products';
 import { formatVnd } from '../../utils/helpers';
 import routes from '../../utils/routes';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../redux/cart/actions';
 
+import { getProductById } from '../../firebase/utils';
+import { useGetFirebase } from '../../firebase/hooks';
+
+import WithSpinner from '../atoms/with-spinner.comp';
 import productSpec from './product-detail.data';
 import {
   PageContainer,
@@ -23,19 +26,21 @@ import {
   BuyButton,
 } from './product-detail.styled';
 
+const WithSpinnerContainer = WithSpinner(PageContainer, 500);
+
 function ProductDetail() {
   const dispatch = useDispatch();
   const { productId } = useParams();
-  const product = products.find((x) => x.id === productId);
+  const { isLoading, data: product } = useGetFirebase({}, getProductById, productId);
 
   const history = useHistory();
-  if (!product) {
+  if (!isLoading && !product) {
     history.push(''); // navigate to products page when there's no product found
     return null;
   }
 
   return (
-    <PageContainer>
+    <WithSpinnerContainer isLoading={isLoading}>
       <ProductName>{product.name}</ProductName>
 
       <ProductDetails>
@@ -64,7 +69,7 @@ function ProductDetail() {
           </BuyButton>
         </ProductInfo>
       </ProductDetails>
-    </PageContainer>
+    </WithSpinnerContainer>
   );
 }
 

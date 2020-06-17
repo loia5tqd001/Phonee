@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import routes from './utils/routes';
+import { useDispatch } from 'react-redux';
+import { fetchProductsAsync } from './redux/products/actions';
 
 import Header from './components/templates/header.comp';
 import Footer from './components/templates/footer.comp';
@@ -13,6 +15,12 @@ import CartPage from './components/pages/cart.comp';
 import CheckoutPage from './components/pages/checkout.comp';
 
 export default function App() {
+  const dispatch = useDispatch(); 
+
+  useEffect(() => {
+    dispatch(fetchProductsAsync());
+  }, [dispatch]);
+
   return (
     // We need the basename to serve on github page correctly: https://github.com/facebook/create-react-app/issues/1765#issuecomment-285114194
     <BrowserRouter basename={process.env.PUBLIC_URL}>

@@ -2,7 +2,7 @@ import { types } from './actions';
 import { addProductToCart, removeProductFromCart, Takeout1ProductFromCart } from './utils';
 
 const initialState = {
-  items: [],
+  items: [], // { product, amount }
   isInCart: true,
   guest: {
     gender: 'anh',

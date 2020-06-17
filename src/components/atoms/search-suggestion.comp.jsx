@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { useDebounce } from 'use-debounce';
 import routes from '../../utils/routes';
 import { formatVnd } from '../../utils/helpers';
-import products from '../../mock-data/products';
+
+import { useSelector } from 'react-redux';
+import { selectAllProductsInArray, selectIsFetching } from '../../redux/products/selectors';
 
 import { searchProduct } from './search-suggestion.utils';
 import {
@@ -16,8 +18,14 @@ import {
 } from './search-suggestion.styled';
 
 function SearchSuggestion({ searchKey, clearTextCb }) {
+  const products = useSelector(selectAllProductsInArray);
+  const isFetching = useSelector(selectIsFetching);
+
   // delayed value with useDebounce: https://github.com/xnimorz/use-debounce#simple-values-debouncing
-  const [displayProducts] = useDebounce(() => searchProduct(products, searchKey, 5), 500);
+  const [displayProducts] = useDebounce(
+    () => searchProduct(isFetching ? [] : products, searchKey, 5),
+    500,
+  );
 
   const onItemClick = () => {
     clearTextCb();

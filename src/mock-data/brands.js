@@ -7,7 +7,7 @@ var labels = Array.from(document.querySelectorAll('.choosedfilter a:not(.reset)'
   (item) => item.textContent.trim(),
 );
 JSON.stringify(
-  Array.from(document.querySelectorAll('.filter a img')).map((item, id) => ({
+  'Abrand_': rray.from(document.querySelectorAll('.filter a img')).map((item, id) => ({
     id: `brand_${id + 1}`,
     name: labels[id],
     productIds: [],
@@ -20,8 +20,8 @@ JSON.stringify(
 
 */
 
-export default [
-  {
+export default {
+  'brand_1': {
     id: 'brand_1',
     name: 'iPhone (Apple)',
     image: 'https://cdn.tgdd.vn/Brand/1/iPhone-(Apple)42-b_16.jpg',
@@ -43,7 +43,7 @@ export default [
       'product_15',
     ],
   },
-  {
+  'brand_2': {
     id: 'brand_2',
     name: 'Samsung',
     image: 'https://cdn.tgdd.vn/Brand/1/Samsung42-b_25.jpg',
@@ -73,7 +73,7 @@ export default [
       'product_38',
     ],
   },
-  {
+  'brand_3': {
     id: 'brand_3',
     name: 'OPPO',
     image: 'https://cdn.tgdd.vn/Brand/1/OPPO42-b_9.png',
@@ -91,7 +91,7 @@ export default [
       'product_49',
     ],
   },
-  {
+  'brand_4': {
     id: 'brand_4',
     name: 'Xiaomi',
     image: 'https://cdn.tgdd.vn/Brand/1/Xiaomi42-b_45.jpg',
@@ -114,7 +114,7 @@ export default [
       'product_65',
     ],
   },
-  {
+  'brand_5': {
     id: 'brand_5',
     name: 'Vivo',
     image: 'https://cdn.tgdd.vn/Brand/1/Vivo42-b_50.jpg',
@@ -134,7 +134,7 @@ export default [
       'product_78',
     ],
   },
-  {
+  'brand_6': {
     id: 'brand_6',
     name: 'Realme',
     image: 'https://cdn.tgdd.vn/Brand/1/Realme42-b_37.png',
@@ -157,7 +157,7 @@ export default [
       'product_94',
     ],
   },
-  {
+  'brand_7': {
     id: 'brand_7',
     name: 'Vsmart',
     image: 'https://cdn.tgdd.vn/Brand/1/Vsmart42-b_40.png',
@@ -174,7 +174,7 @@ export default [
       'product_104',
     ],
   },
-  {
+  'brand_8': {
     id: 'brand_8',
     name: 'Nokia',
     image: 'https://cdn.tgdd.vn/Brand/1/Nokia42-b_21.jpg',
@@ -195,7 +195,7 @@ export default [
       'product_118',
     ],
   },
-  {
+  'brand_9': {
     id: 'brand_9',
     name: 'Huawei',
     image: 'https://cdn.tgdd.vn/Brand/1/Huawei42-b_30.jpg',
@@ -211,7 +211,7 @@ export default [
       'product_127',
     ],
   },
-  {
+  'brand_10': {
     id: 'brand_10',
     name: 'Mobell',
     image: 'https://cdn.tgdd.vn/Brand/1/Mobell42-b_19.jpg',
@@ -231,7 +231,7 @@ export default [
       'product_140',
     ],
   },
-  {
+  'brand_11': {
     id: 'brand_11',
     name: 'Itel',
     image: 'https://cdn.tgdd.vn/Brand/1/Itel42-b_54.jpg',
@@ -248,7 +248,7 @@ export default [
       'product_150',
     ],
   },
-  {
+  'brand_12': {
     id: 'brand_12',
     name: 'Coolpad',
     image: 'https://cdn.tgdd.vn/Brand/1/Coolpad42-b_33.png',
@@ -262,13 +262,13 @@ export default [
       'product_157',
     ],
   },
-  {
+  'brand_13': {
     id: 'brand_13',
     name: 'BlackBerry',
     image: 'https://cdn.tgdd.vn/Brand/1/BlackBerry42-b_38.png',
     productIds: ['product_158', 'product_159', 'product_160', 'product_161', 'product_162'],
   },
-  {
+  'brand_14': {
     id: 'brand_14',
     name: 'Masstel',
     image: 'https://cdn.tgdd.vn/Brand/1/Masstel42-b_0.png',
@@ -284,4 +284,4 @@ export default [
       'product_171',
     ],
   },
-];
+};
